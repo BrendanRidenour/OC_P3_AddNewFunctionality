@@ -18,6 +18,4 @@ namespace P3AddNewFunctionalityDotNetCore.Models
 //            }
 //        }
     }
-
-
 }

@@ -14,7 +14,6 @@ namespace P3AddNewFunctionalityDotNetCore.Data
         public virtual DbSet<OrderLine> OrderLine { get; set; }
         public virtual DbSet<Product> Product { get; set; }
 
-
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
 //            if (!optionsBuilder.IsConfigured)
@@ -48,5 +47,3 @@ namespace P3AddNewFunctionalityDotNetCore.Data
         }
     }
 }
-
-

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -11,6 +13,7 @@ using P3AddNewFunctionalityDotNetCore.Data;
 using P3AddNewFunctionalityDotNetCore.Models;
 using P3AddNewFunctionalityDotNetCore.Models.Repositories;
 using P3AddNewFunctionalityDotNetCore.Models.Services;
+using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -38,6 +41,7 @@ namespace P3AddNewFunctionalityDotNetCore
             services.AddMemoryCache();
             services.AddSession();
             services.AddMvc()
+                .AddFluentValidation()
                 .AddViewLocalization(
                     LanguageViewLocationExpanderFormat.Suffix,
                     opts => { opts.ResourcesPath = "Resources"; })
@@ -45,6 +49,7 @@ namespace P3AddNewFunctionalityDotNetCore
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddJsonOptions(options => options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects);
 
+            services.AddTransient<IValidator<ProductViewModel>, ProductViewModelValidator>();
 
             services.Configure<RequestLocalizationOptions>(opts =>
             { 

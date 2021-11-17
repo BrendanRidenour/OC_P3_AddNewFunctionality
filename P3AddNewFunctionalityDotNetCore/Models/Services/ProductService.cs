@@ -90,44 +90,42 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             }
         }
 
-        // TODO this is an example method, remove it and perform model validation using data annotations
         public List<string> CheckProductModelErrors(ProductViewModel product)
         {
             List<string> modelErrors = new List<string>();
-            if (product.Name == null || string.IsNullOrWhiteSpace(product.Name))
-            {
-                modelErrors.Add(_localizer["MissingName"]);
-            }
 
-            if (product.Price == null || string.IsNullOrWhiteSpace(product.Price))
-            {
-                modelErrors.Add(_localizer["MissingPrice"]);
-            }
+//            if (string.IsNullOrWhiteSpace(product.Name))
+//            {
+//                modelErrors.Add(_localizer["MissingName"]);
+//            }
 
-            if (!Double.TryParse(product.Price, out double pc))
-            {
-                modelErrors.Add(_localizer["PriceNotANumber"]);
-            }
-            else
-            {
-                if (pc <= 0)
-                    modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
-            }
+//            if (string.IsNullOrWhiteSpace(product.Price))
+//            {
+//                modelErrors.Add(_localizer["MissingPrice"]);
+//            }
 
-            if (product.Stock == null || string.IsNullOrWhiteSpace(product.Stock))
-            {
-                modelErrors.Add(_localizer["MissingQuantity"]);
-            }
+//            if (!double.TryParse(product.Price, out double price))
+//            {
+//                modelErrors.Add(_localizer["PriceNotANumber"]);
+//            }
+//            else if (price <= 0)
+//            {
+//                modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
+//            }
 
-            if (!int.TryParse(product.Stock, out int qt))
-            {
-                modelErrors.Add(_localizer["StockNotAnInteger"]);
-            }
-            else
-            {
-                if (qt <= 0)
-                    modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
-            }
+//            if (string.IsNullOrWhiteSpace(product.Stock))
+//            {
+//                modelErrors.Add(_localizer["MissingQuantity"]);
+//            }
+
+//            if (!int.TryParse(product.Stock, out int stock))
+//            {
+//                modelErrors.Add(_localizer["StockNotAnInteger"]);
+//            }
+//            else if (stock <= 0)
+//            {
+//                modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
+//            }
 
             return modelErrors;
         }
@@ -144,7 +142,7 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             {
                 Name = product.Name,
                 Price = double.Parse(product.Price),
-                Quantity = Int32.Parse(product.Stock),
+                Quantity = int.Parse(product.Stock),
                 Description = product.Description,
                 Details = product.Details
             };
