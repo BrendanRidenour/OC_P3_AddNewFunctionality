@@ -124,6 +124,13 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             // => the choice is up to the student
             _cart.RemoveLine(GetProductById(id));
 
+            // NOTE: Truthfully, in a real application, the cart will be associated with a user
+            // (via a cookie and/or database entry) and the above code WILL NOT work. To properly
+            // protect users from purchasing deleted products, it will be necessary to purge
+            // products that no longer exists from a user's cart (i) whenever the cart loads,
+            // (ii) while the user reviews the order, and (iii) during checkout. This will
+            // protect users from ordering products that no longer exist.
+
             _productRepository.DeleteProduct(id);
         }
     }
