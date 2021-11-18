@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Localization;
+using P3AddNewFunctionalityDotNetCore.Models.Entities;
+using P3AddNewFunctionalityDotNetCore.Models.Repositories;
+using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
-using P3AddNewFunctionalityDotNetCore.Models.Entities;
-using P3AddNewFunctionalityDotNetCore.Models.Repositories;
-using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 
 namespace P3AddNewFunctionalityDotNetCore.Models.Services
 {
@@ -90,45 +89,14 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             }
         }
 
-        public List<string> CheckProductModelErrors(ProductViewModel product)
-        {
-            List<string> modelErrors = new List<string>();
+        //NOTE: Model validation is handled via FluentValidation in MVC.
+        //      This method is no longer required.
+        //public List<string> CheckProductModelErrors(ProductViewModel product)
+        //{
+        //    List<string> modelErrors = new List<string>();
 
-//            if (string.IsNullOrWhiteSpace(product.Name))
-//            {
-//                modelErrors.Add(_localizer["MissingName"]);
-//            }
-
-//            if (string.IsNullOrWhiteSpace(product.Price))
-//            {
-//                modelErrors.Add(_localizer["MissingPrice"]);
-//            }
-
-//            if (!double.TryParse(product.Price, out double price))
-//            {
-//                modelErrors.Add(_localizer["PriceNotANumber"]);
-//            }
-//            else if (price <= 0)
-//            {
-//                modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
-//            }
-
-//            if (string.IsNullOrWhiteSpace(product.Stock))
-//            {
-//                modelErrors.Add(_localizer["MissingQuantity"]);
-//            }
-
-//            if (!int.TryParse(product.Stock, out int stock))
-//            {
-//                modelErrors.Add(_localizer["StockNotAnInteger"]);
-//            }
-//            else if (stock <= 0)
-//            {
-//                modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
-//            }
-
-            return modelErrors;
-        }
+        //    return modelErrors;
+        //}
 
         public void SaveProduct(ProductViewModel product)
         {

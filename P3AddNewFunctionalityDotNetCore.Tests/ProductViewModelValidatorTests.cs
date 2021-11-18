@@ -1,8 +1,5 @@
 ﻿using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace P3AddNewFunctionalityDotNetCore.Tests
@@ -16,7 +13,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void MissingName_ReturnsError(string name)
         {
             var model = CreateModel(name: name);
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -31,7 +28,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void MissingPrice_ReturnsError(string price)
         {
             var model = CreateModel(price: price);
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -43,7 +40,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void PriceNotANumber_ReturnsError()
         {
             var model = CreateModel(price: "not_a_number");
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -57,7 +54,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void PriceNotGreaterThanZero_ReturnsError(string price)
         {
             var model = CreateModel(price: price);
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -72,7 +69,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void MissingStock_ReturnsError(string stock)
         {
             var model = CreateModel(stock: stock);
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -84,7 +81,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void StockNotAnInteger_ReturnsError()
         {
             var model = CreateModel(stock: "not_an_integer");
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -98,7 +95,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         public void StockNotGreaterThanZero_ReturnsError(string stock)
         {
             var model = CreateModel(stock: stock);
-            var validator = new ProductViewModelValidator();
+            var validator = CreateValidator();
 
             var result = validator.Validate(model);
 
@@ -124,5 +121,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 Price = price,
             };
         }
+        private static ProductViewModelValidator CreateValidator() =>
+            new ProductViewModelValidator(new MockStringLocalizer<ProductViewModelValidator>());
     }
 }
